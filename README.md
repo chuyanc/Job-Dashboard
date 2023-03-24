@@ -1,5 +1,6 @@
 # Job-board
 
+Hi! Welcome to the job dashboard backend project~ :)
 
 ## Introduction
 This is the backend of a job dashboard that allows users to select jobs for which they would like to see employment wage data.
