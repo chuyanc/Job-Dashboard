@@ -17,33 +17,33 @@ public class JobController {
         return jobService.displayJobs();
     }
 
-    @RequestMapping("/get-title/{id}")
+    @RequestMapping("jobboard/get-title/{id}")
     public String getTitle(@PathVariable Long id) {
         return jobService.getTitle(id);
     }
 
-    @RequestMapping("/get-ave/{id}")
+    @RequestMapping("jobboard/get-ave/{id}")
     public Integer getAve(@PathVariable Long id) {
         return jobService.getAve(id);
     }
 
-    @RequestMapping("/add/{id}")
-    public Job addJob(@PathVariable Long id) {
+    @RequestMapping("jobboard/add/{id}")
+    public List<Job> addJob(@PathVariable Long id) {
         return jobService.addJob(id);
     }
 
-    @RequestMapping("/delete/{id}")
-    public Job deleteJob(@PathVariable Long id) {
+
+    @RequestMapping("jobboard/delete/{id}")
+    public List<Job> deleteJob(@PathVariable Long id) {
         return jobService.deleteJob(id);
     }
 
-    @RequestMapping("/empty")
-    public void deleteAll() {
-        jobService.deleteAll();
-        return;
+    @RequestMapping("jobboard/empty")
+    public List<Job> deleteAll() {
+        return jobService.deleteAll();
     }
 
-    @RequestMapping("/expect/{id}")
+    @RequestMapping("jobboard/expect/{id}")
     public List<Integer> expect(@PathVariable Long id) {
         return jobService.expect(id);
     }

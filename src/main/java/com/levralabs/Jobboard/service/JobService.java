@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,10 +29,12 @@ public class JobService {
      * @param id
      * @return
      */
-    public Job addJob(Long id) {
+    public List<Job> addJob(Long id) {
         Job job = jobRepository.findById(id) .orElseThrow(() -> new ResourceNotFoundException("Data not found with id " + id));
         job.setSelected(1);
-        return jobRepository.save(job);
+        job.setLastUpdated(new Timestamp(System.currentTimeMillis()));
+        jobRepository.save(job);
+        return displayJobs();
     }
 
 
@@ -40,10 +43,11 @@ public class JobService {
      * @param id
      * @return
      */
-    public Job deleteJob(Long id) {
+    public List<Job> deleteJob(Long id) {
         Job job = jobRepository.findById(id) .orElseThrow(() -> new ResourceNotFoundException("Data not found with id " + id));
         job.setSelected(0);
-        return jobRepository.save(job);
+        jobRepository.save(job);
+        return displayJobs();
     }
 
 
@@ -51,12 +55,12 @@ public class JobService {
      * Clear the dashboard
      * @return
      */
-    public void deleteAll() {
+    public List<Job> deleteAll() {
         List<Job> jobList = jobRepository.findAll();
         for (Job job : jobList) {
             deleteJob((long)job.getId());
         }
-        return;
+        return displayJobs();
     }
 
     /**
