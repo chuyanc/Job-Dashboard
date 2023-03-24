@@ -16,7 +16,9 @@ This is the backend of a job dashboard that allows users to select jobs for whic
 - Version Control: Git
 - JDK: 17
 
-##Data Source
+## Data Source
+The data is from from the Bureau of Labor Statistics website on average earnings:
+
 [May 2021 National Occupational Employment and Wage Estimates](https://www.bls.gov/oes/current/oes_nat.htm#00-0000)
 
 [Excel file here](https://www.bls.gov/oes/special.requests/oesm21nat.zip)
@@ -28,6 +30,7 @@ Pull the project to local environment, should be equipped with:
 - MySQL
 
 Before running, import the data source CSV file to MySQL first.
+
 Each time running, run MySQL first, and Run:
 - JobBoardApplication.java
 
