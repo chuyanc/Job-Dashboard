@@ -1,8 +1,7 @@
-package com.levralab.Jobboard.controller;
+package com.levralabs.Jobboard.controller;
 
-
-import com.levralab.Jobboard.entity.Job;
-import com.levralab.Jobboard.service.JobService;
+import com.levralabs.Jobboard.entity.Job;
+import com.levralabs.Jobboard.service.JobService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;

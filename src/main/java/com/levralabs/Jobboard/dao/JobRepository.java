@@ -1,6 +1,6 @@
-package com.levralab.Jobboard.dao;
+package com.levralabs.Jobboard.dao;
 
-import com.levralab.Jobboard.entity.Job;
+import com.levralabs.Jobboard.entity.Job;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

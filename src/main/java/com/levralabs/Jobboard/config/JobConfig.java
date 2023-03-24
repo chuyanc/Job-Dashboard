@@ -1,6 +1,6 @@
-package com.levralab.Jobboard.config;
+package com.levralabs.Jobboard.config;
 
-import com.levralab.Jobboard.entity.Job;
+import com.levralabs.Jobboard.entity.Job;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
 import org.springframework.data.rest.webmvc.config.RepositoryRestConfigurer;

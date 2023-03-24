@@ -1,11 +1,9 @@
-package com.levralab.Jobboard.entity;
+package com.levralabs.Jobboard.entity;
 
 import lombok.Getter;
 import lombok.Setter;
 import jakarta.persistence.*;
-
 import java.sql.Timestamp;
-import java.util.Date;
 
 @Entity
 @Getter
@@ -35,6 +33,7 @@ public class Job {
     @Column(name = "selected")
     private Integer selected;
 
+    // Last updated time
     @Column(name = "last_updated")
     private Timestamp lastUpdated;
 

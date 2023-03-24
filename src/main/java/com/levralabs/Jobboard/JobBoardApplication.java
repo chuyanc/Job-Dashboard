@@ -1,4 +1,4 @@
-package com.levralab.Jobboard;
+package com.levralabs.Jobboard;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
