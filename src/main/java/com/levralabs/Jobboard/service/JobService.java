@@ -77,4 +77,23 @@ public class JobService {
         return nextFive;
     }
 
+    /**
+     * Get job title of a certain job
+     * @param id
+     * @return
+     */
+    public String getTitle(Long id) {
+        Job job = jobRepository.findById(id) .orElseThrow(() -> new ResourceNotFoundException("Data not found with id " + id));
+        return job.getJobTitle();
+    }
+
+    /**
+     * Get annual average salary of a certain job
+     * @param id
+     * @return
+     */
+    public Integer getAve(Long id) {
+        Job job = jobRepository.findById(id) .orElseThrow(() -> new ResourceNotFoundException("Data not found with id " + id));
+        return Integer.parseInt(job.getAnnualMean().replaceAll(",", ""));
+    }
 }

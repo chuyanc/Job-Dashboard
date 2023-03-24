@@ -17,6 +17,16 @@ public class JobController {
         return jobService.displayJobs();
     }
 
+    @RequestMapping("/get-title/{id}")
+    public String getTitle(@PathVariable Long id) {
+        return jobService.getTitle(id);
+    }
+
+    @RequestMapping("/get-ave/{id}")
+    public Integer getAve(@PathVariable Long id) {
+        return jobService.getAve(id);
+    }
+
     @RequestMapping("/add/{id}")
     public Job addJob(@PathVariable Long id) {
         return jobService.addJob(id);
