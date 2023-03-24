@@ -12,7 +12,7 @@ public class JobConfig implements RepositoryRestConfigurer {
     @Override
     public void configureRepositoryRestConfiguration(RepositoryRestConfiguration config, CorsRegistry cors) {
         HttpMethod[] unsupportedMethod = {HttpMethod.POST, HttpMethod.DELETE};
-        // disable PUT, POST and DELETE, to make it read-only
+        // disable POST and DELETE method
         config.getExposureConfiguration().forDomainType(Job.class)
                 .withItemExposure((metdata, httpMethods) -> httpMethods.disable(unsupportedMethod))
                 .withCollectionExposure((metdata, httpMethods) -> httpMethods.disable(unsupportedMethod));
