@@ -33,7 +33,7 @@ Pull the project to local environment, should be equipped with:
 Before running, import the data source CSV file to MySQL first.
 
 Each time running, run MySQL first, and Run:
-- JobBoardApplication.java
+`JobBoardApplication.java`
 
 Then open [http://localhost:8080](http://localhost:8080), and adding certain path variables to view the API endpoints.
 
