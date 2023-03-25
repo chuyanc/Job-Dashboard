@@ -15,11 +15,7 @@ public class Job {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
-    private Integer id;
-
-    // The occupation code
-    @Column(name = "occ_code")
-    private String jobCode;
+    private Long id;
 
     // The title of the job
     @Column(name = "occ_title")
@@ -30,8 +26,8 @@ public class Job {
     private String annualMean;
 
     // The status of being selected
-    @Column(name = "selected")
-    private Integer selected;
+    @Column(name = "is_selected")
+    private Boolean isSelected;
 
     // Last updated time
     @Column(name = "last_updated")

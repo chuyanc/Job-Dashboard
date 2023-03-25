@@ -2,11 +2,11 @@ package com.levralabs.Jobboard.service;
 
 import com.levralabs.Jobboard.dao.JobRepository;
 import com.levralabs.Jobboard.entity.Job;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,33 +21,42 @@ public class JobService {
      * @return
      */
     public List<Job> displayJobs() {
-        return jobRepository.findBySelected(1, Sort.by(Sort.Direction.DESC, "lastUpdated"));
+        return jobRepository.findByIsSelected(true, Sort.by(Sort.Direction.DESC, "lastUpdated"));
     }
 
     /**
      * Add a job to the dashboard
-     * @param id
+     * @param jobTitle
      * @return
      */
-    public List<Job> addJob(Long id) {
-        Job job = jobRepository.findById(id) .orElseThrow(() -> new ResourceNotFoundException("Data not found with id " + id));
-        job.setSelected(1);
-        job.setLastUpdated(new Timestamp(System.currentTimeMillis()));
-        jobRepository.save(job);
-        return displayJobs();
+    @Transactional
+    public void addJob(String jobTitle) {
+        List<Job> list = jobRepository.findByJobTitle(jobTitle);
+        if (list == null) {
+            throw new ResourceNotFoundException("Job" + jobTitle + "not found");
+        }
+        for (Job job : list) {
+            jobRepository.updateSelectedAsTrue(job.getId());
+        }
+        return;
     }
 
 
     /**
      * Remove a job from the dashboard
-     * @param id
+     * @param jobTitle
      * @return
      */
-    public List<Job> deleteJob(Long id) {
-        Job job = jobRepository.findById(id) .orElseThrow(() -> new ResourceNotFoundException("Data not found with id " + id));
-        job.setSelected(0);
-        jobRepository.save(job);
-        return displayJobs();
+    @Transactional
+    public void deleteJob(String jobTitle) {
+        List<Job> list = jobRepository.findByJobTitle(jobTitle);
+        if (list == null) {
+            throw new ResourceNotFoundException("Job" + jobTitle + "not found");
+        }
+        for (Job job : list) {
+            jobRepository.updateSelectedAsFalse(job.getId());
+        }
+        return;
     }
 
 
@@ -55,12 +64,13 @@ public class JobService {
      * Clear the dashboard
      * @return
      */
-    public List<Job> deleteAll() {
-        List<Job> jobList = jobRepository.findAll();
+    @Transactional
+    public void deleteAll() {
+        List<Job> jobList = displayJobs();
         for (Job job : jobList) {
-            deleteJob((long)job.getId());
+            jobRepository.updateSelectedAsFalse(job.getId());
         }
-        return displayJobs();
+        return;
     }
 
     /**
@@ -69,7 +79,7 @@ public class JobService {
      * @return
      */
     public List<Integer> expect(Long id) {
-        Job job = jobRepository.findById(id) .orElseThrow(() -> new ResourceNotFoundException("Data not found with id " + id));
+        Job job = jobRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Data not found with id " + id));
         String annualAveString = job.getAnnualMean();
         int annualAve = Integer.parseInt(annualAveString.replaceAll(",", ""));
         List<Integer> nextFive = new ArrayList<>();
@@ -100,4 +110,5 @@ public class JobService {
         Job job = jobRepository.findById(id) .orElseThrow(() -> new ResourceNotFoundException("Data not found with id " + id));
         return Integer.parseInt(job.getAnnualMean().replaceAll(",", ""));
     }
+
 }
