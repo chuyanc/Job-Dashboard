@@ -8,7 +8,7 @@ import java.sql.Timestamp;
 @Entity
 @Getter
 @Setter
-@Table(name="job_table")
+@Table(name="job_board_table")
 
 public class Job {
 
