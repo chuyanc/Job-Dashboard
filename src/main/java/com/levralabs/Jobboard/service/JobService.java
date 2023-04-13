@@ -78,7 +78,7 @@ public class JobService {
     @Transactional
     public void addJob(String jobTitle) {
         List<Job> list = jobRepository.findByJobTitle(jobTitle);
-        if (list == null) {
+        if (list.isEmpty()) {
             throw new ResourceNotFoundException("Job" + jobTitle + "not found");
         }
         for (Job job : list) {
@@ -89,18 +89,12 @@ public class JobService {
 
     /**
      * Remove a job from the dashboard
-     * @param jobTitle
+     * @param id
      * @return
      */
     @Transactional
-    public void deleteJob(String jobTitle) {
-        List<Job> list = jobRepository.findByJobTitle(jobTitle);
-        if (list == null) {
-            throw new ResourceNotFoundException("Job" + jobTitle + "not found");
-        }
-        for (Job job : list) {
-            jobRepository.updateSelectedAsFalse(job.getId());
-        }
+    public void deleteJob(Long id) {
+        jobRepository.updateSelectedAsFalse(id);
         return;
     }
 

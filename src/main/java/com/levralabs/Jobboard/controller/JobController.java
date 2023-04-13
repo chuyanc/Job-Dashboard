@@ -61,11 +61,11 @@ public class JobController {
 
     /**
      * Remove a job from the dashboard
-     * @param jobTitle
+     * @param id
      */
-    @RequestMapping("/job-board/delete/{job-title}")
-    public void deleteJob(@PathVariable("job-title") String jobTitle) {
-        jobService.deleteJob(jobTitle);
+    @RequestMapping("/job-board/delete/{id}")
+    public void deleteJob(@PathVariable("id") Long id) {
+        jobService.deleteJob(id);
     }
 
     /**
