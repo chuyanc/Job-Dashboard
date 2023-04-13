@@ -48,8 +48,8 @@ There are several API endpoints with certain functions:
 - `/job-board/get-title/{id}`: To view the title of a certain job on the dashboard
 - `/job-board/get-ave/{id}`: To view the annual average salary of a certain job on the dashboard
 - `/job-board/expect/{id}`: To view the data of the expected annual average salary in 5 years
-- `/job-board/add/{job-title}`: Add a job to the dashboard
-- `/job-board/delete/{job-title}`: Remove a job from the dashboard
+- `/job-board/add/{job-title}`: Add jobs of the typed title to the dashboard
+- `/job-board/delete/{id}`: Remove a job from the dashboard
 - `/job-board/clear`: Clear the job dashboard
 
 
